@@ -1,0 +1,31 @@
+name: ob_awto_bezegleri
+description: O.B Awto Bezegleri automotive accessories shop app
+publish_to: "none"
+version: 1.1.0+2
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  supabase_flutter: ^2.8.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo_dark.png
+    - assets/logo_light.png
+
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/logo_dark.png"
+  adaptive_icon_background: "#101318"
+  adaptive_icon_foreground: "assets/logo_dark.png"
