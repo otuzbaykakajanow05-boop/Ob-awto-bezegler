@@ -35,9 +35,10 @@ jobs:
           PROJECT_DIR=$(dirname "$PROJECT_FILE")
           cd "$PROJECT_DIR"
           flutter pub get
-          flutter build apk --release --build-dir "$GITHUB_WORKSPACE/build"
+          flutter build apk --release
+          cp build/app/outputs/flutter-apk/app-release.apk "$GITHUB_WORKSPACE/OB-Awto-Bezegleri.apk"
 
       - uses: actions/upload-artifact@v4
         with:
           name: OB-Awto-Bezegleri-APK
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: OB-Awto-Bezegleri.apk
