@@ -28,12 +28,13 @@ jobs:
           test -n "$ARCHIVE"
           unzip -o "$ARCHIVE" -d app
 
-      - name: Build APK
+      - name: Generate Android project and build APK
         run: |
           PROJECT_FILE=$(find app -type f -name pubspec.yaml -print -quit)
           test -n "$PROJECT_FILE"
           PROJECT_DIR=$(dirname "$PROJECT_FILE")
           cd "$PROJECT_DIR"
+          flutter create --platforms=android --project-name ob_awto_bezegleri .
           flutter pub get
           flutter build apk --release
           cp build/app/outputs/flutter-apk/app-release.apk "$GITHUB_WORKSPACE/OB-Awto-Bezegleri.apk"
