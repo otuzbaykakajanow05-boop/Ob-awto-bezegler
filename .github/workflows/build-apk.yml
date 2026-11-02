@@ -29,12 +29,15 @@ jobs:
           unzip -o "$ARCHIVE" -d app
 
       - name: Build APK
-        working-directory: app
         run: |
+          PROJECT_FILE=$(find app -type f -name pubspec.yaml -print -quit)
+          test -n "$PROJECT_FILE"
+          PROJECT_DIR=$(dirname "$PROJECT_FILE")
+          cd "$PROJECT_DIR"
           flutter pub get
-          flutter build apk --release
+          flutter build apk --release --build-dir "$GITHUB_WORKSPACE/build"
 
       - uses: actions/upload-artifact@v4
         with:
           name: OB-Awto-Bezegleri-APK
-          path: app/build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
