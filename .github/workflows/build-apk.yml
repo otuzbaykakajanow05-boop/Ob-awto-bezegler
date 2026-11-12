@@ -34,6 +34,8 @@ jobs:
           test -n "$PROJECT_FILE"
           PROJECT_DIR=$(dirname "$PROJECT_FILE")
           cd "$PROJECT_DIR"
+          mkdir -p lib
+          cp -R "$GITHUB_WORKSPACE/lib/." lib/
           flutter create --platforms=android --project-name ob_awto_bezegleri .
           flutter pub get
           flutter build apk --release
