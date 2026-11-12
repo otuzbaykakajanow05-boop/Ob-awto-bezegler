@@ -204,11 +204,79 @@ class _ShopHomeState extends State<ShopHome> {
 class ProductPage extends StatelessWidget {
   final ShopProduct product;
   final ValueChanged<ShopProduct> onAdd;
-  const ProductPage({super.key,required this.product,required this.onAdd});
-  @override
-  Widget build(BuildContext context) => Scaffold(appBar:AppBar(title:Text(product.name)),body:Padding(padding:const EdgeInsets.all(20),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[Expanded(child:Center(child:product.imageUrl == null ? const Icon(Icons.directions_car,size:120,color:Color(0xffc64a4a)) : Image.network(product.imageUrl!,errorBuilder:(_,__,___)=>const Icon(Icons.image_not_supported,size:80)))),Text(product.name,style:Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight:FontWeight.bold)),const SizedBox(height:8),Text(product.price,style:const TextStyle(fontWeight:FontWeight.bold,color:Color(0xffd56a6a))),const SizedBox(height:12),Text(product.description),const Spacer(),SizedBox(width:double.infinity,child:FilledButton.icon(onPressed:(){onAdd(product);ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('Ürün sepete eklendi')));},icon:const Icon(Icons.add_shopping_cart),label:const Text('Sepete ekle')))])));
-}
 
+  const ProductPage({
+    super.key,
+    required this.product,
+    required this.onAdd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(product.name),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Center(
+                child: product.imageUrl == null
+                    ? const Icon(
+                        Icons.directions_car,
+                        size: 120,
+                        color: Color(0xffc64a4a),
+                      )
+                    : Image.network(
+                        product.imageUrl!,
+                        errorBuilder: (_, __, ___) => const Icon(
+                          Icons.image_not_supported,
+                          size: 80,
+                        ),
+                      ),
+              ),
+            ),
+            Text(
+              product.name,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              product.price,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xffd56a6a),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(product.description),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: () {
+                  onAdd(product);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Ürün sepete eklendi'),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.add_shopping_cart),
+                label: const Text('Sepete ekle'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 class CartPage extends StatelessWidget {
   final List<ShopProduct> cart;
   const CartPage({super.key,required this.cart});
